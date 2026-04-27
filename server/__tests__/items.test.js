@@ -22,6 +22,26 @@ afterEach(() => {
   db.close();
 });
 
+describe('DELETE /api/items/:id', () => {
+  test('deletes an item and returns 204', async () => {
+    const { lastInsertRowid } = db.prepare('INSERT INTO items (name, quantity, unit) VALUES (?, ?, ?)').run('Coffee', 5, 'bags');
+    const res = await request(app).delete(`/api/items/${lastInsertRowid}`);
+    expect(res.status).toBe(204);
+  });
+
+  test('item is gone after deletion', async () => {
+    const { lastInsertRowid } = db.prepare('INSERT INTO items (name, quantity, unit) VALUES (?, ?, ?)').run('Coffee', 5, 'bags');
+    await request(app).delete(`/api/items/${lastInsertRowid}`);
+    const row = db.prepare('SELECT * FROM items WHERE id = ?').get(lastInsertRowid);
+    expect(row).toBeUndefined();
+  });
+
+  test('returns 404 for non-existent item', async () => {
+    const res = await request(app).delete('/api/items/999');
+    expect(res.status).toBe(404);
+  });
+});
+
 describe('GET /api/items', () => {
   test('returns empty array when no items exist', async () => {
     const res = await request(app).get('/api/items');

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getItems } from './api';
+import { getItems, updateItem } from './api';
 import ItemList from './components/ItemList';
 
 export default function App() {
@@ -14,10 +14,15 @@ export default function App() {
     fetchItems();
   }, []);
 
+  async function handleUpdate(item) {
+    await updateItem(item);
+    fetchItems();
+  }
+
   return (
     <div className="container">
       <h1>Office Inventory</h1>
-      <ItemList items={items} />
+      <ItemList items={items} onUpdate={handleUpdate} />
     </div>
   );
 }

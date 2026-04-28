@@ -37,3 +37,29 @@ describe('GET /api/items', () => {
     expect(res.body[0]).toMatchObject({ name: 'Coffee', quantity: 5, unit: 'bags' });
   });
 });
+
+describe('POST /api/items', () => {
+  test('creates an item and returns it with an id', async () => {
+    const res = await request(app)
+      .post('/api/items')
+      .send({ name: 'Tea', quantity: 10, unit: 'boxes' });
+    expect(res.status).toBe(201);
+    expect(res.body).toMatchObject({ name: 'Tea', quantity: 10, unit: 'boxes' });
+    expect(res.body.id).toBeDefined();
+  });
+
+  test('creates an item without a unit', async () => {
+    const res = await request(app)
+      .post('/api/items')
+      .send({ name: 'Biscuits', quantity: 3 });
+    expect(res.status).toBe(201);
+    expect(res.body).toMatchObject({ name: 'Biscuits', quantity: 3 });
+  });
+
+  test('created item is retrievable via GET', async () => {
+    await request(app).post('/api/items').send({ name: 'Tea', quantity: 10, unit: 'boxes' });
+    const res = await request(app).get('/api/items');
+    expect(res.body).toHaveLength(1);
+    expect(res.body[0]).toMatchObject({ name: 'Tea', quantity: 10, unit: 'boxes' });
+  });
+});

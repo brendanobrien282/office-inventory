@@ -27,5 +27,11 @@ module.exports = function makeItemsRouter(db) {
     res.json(item);
   });
 
+  router.delete('/:id', (req, res) => {
+    const result = db.prepare('DELETE FROM items WHERE id = ?').run(req.params.id);
+    if (result.changes === 0) return res.status(404).json({ error: 'Not found' });
+    res.status(204).send();
+  });
+
   return router;
 };

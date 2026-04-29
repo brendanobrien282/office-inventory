@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ItemList({ items, onUpdate }) {
+export default function ItemList({ items, onUpdate, onDelete }) {
   if (items.length === 0) {
     return <p className="empty">No items in inventory.</p>;
   }
@@ -22,8 +22,11 @@ export default function ItemList({ items, onUpdate }) {
             <td>{item.quantity}</td>
             <td>{item.unit || '—'}</td>
             <td>
-              <button onClick={() => onUpdate({ ...item, quantity: item.quantity + 1 })}>+</button>
-              <button onClick={() => onUpdate({ ...item, quantity: item.quantity - 1 })}>-</button>
+              <div className="actions">
+                <button onClick={() => onUpdate({ ...item, quantity: item.quantity + 1 })}>+</button>
+                <button onClick={() => onUpdate({ ...item, quantity: item.quantity - 1 })}>-</button>
+                <button className="btn-delete" onClick={() => onDelete(item.id)}>Delete</button>
+              </div>
             </td>
           </tr>
         ))}

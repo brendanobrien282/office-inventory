@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getItems, addItem } from './api';
+import { getItems, addItem, updateItem } from './api';
 import ItemList from './components/ItemList';
 import AddItemForm from './components/AddItemForm';
 
@@ -20,11 +20,16 @@ export default function App() {
     fetchItems();
   }
 
+  async function handleUpdate(item) {
+    await updateItem(item);
+    fetchItems();
+  }
+
   return (
     <div className="container">
       <h1>Office Inventory</h1>
       <AddItemForm onAdd={handleAdd} />
-      <ItemList items={items} />
+      <ItemList items={items} onUpdate={handleUpdate} />
     </div>
   );
 }

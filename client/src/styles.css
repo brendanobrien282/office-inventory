@@ -1,12 +1,150 @@
-/* Stub — full styling is addressed in the Styling issue */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: system-ui, sans-serif;
+  background: #f5f5f5;
   margin: 0;
   padding: 0;
+  color: #222;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 860px;
   margin: 2rem auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+/* Add form */
+.add-form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.form-field input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  width: 160px;
+}
+
+.form-field input[type="number"] {
+  width: 90px;
+}
+
+.form-field .error {
+  font-size: 0.78rem;
+  color: #c00;
+}
+
+/* Inventory table */
+.item-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.item-table th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #555;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+.item-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.item-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.item-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* Buttons */
+button {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+button:hover {
+  background: #f0f0f0;
+}
+
+button.btn-add {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  font-weight: 600;
+}
+
+button.btn-add:hover {
+  background: #1d4ed8;
+}
+
+button.btn-delete {
+  color: #c00;
+  border-color: #fca5a5;
+}
+
+button.btn-delete:hover {
+  background: #fef2f2;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.empty {
+  color: #888;
+  font-style: italic;
+  padding: 1rem 0;
 }

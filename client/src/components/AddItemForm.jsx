@@ -28,8 +28,8 @@ export default function AddItemForm({ onAdd }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="add-form" onSubmit={handleSubmit}>
+      <div className="form-field">
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -37,9 +37,9 @@ export default function AddItemForm({ onAdd }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        {errors.name && <span>{errors.name}</span>}
+        {errors.name && <span className="error">{errors.name}</span>}
       </div>
-      <div>
+      <div className="form-field">
         <label htmlFor="quantity">Quantity</label>
         <input
           id="quantity"
@@ -47,9 +47,9 @@ export default function AddItemForm({ onAdd }) {
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
         />
-        {errors.quantity && <span>{errors.quantity}</span>}
+        {errors.quantity && <span className="error">{errors.quantity}</span>}
       </div>
-      <div>
+      <div className="form-field">
         <label htmlFor="unit">Unit (optional)</label>
         <input
           id="unit"
@@ -58,7 +58,7 @@ export default function AddItemForm({ onAdd }) {
           onChange={(e) => setUnit(e.target.value)}
         />
       </div>
-      <button type="submit">Add Item</button>
+      <button type="submit" className="btn-add">Add Item</button>
     </form>
   );
 }

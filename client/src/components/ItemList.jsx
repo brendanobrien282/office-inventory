@@ -22,9 +22,11 @@ export default function ItemList({ items, onUpdate, onDelete }) {
             <td>{item.quantity}</td>
             <td>{item.unit || '—'}</td>
             <td>
-              <button onClick={() => onUpdate({ ...item, quantity: item.quantity + 1 })}>+</button>
-              <button onClick={() => onUpdate({ ...item, quantity: item.quantity - 1 })}>-</button>
-              <button onClick={() => onDelete(item.id)}>Delete</button>
+              <div className="actions">
+                <button onClick={() => onUpdate({ ...item, quantity: item.quantity + 1 })}>+</button>
+                <button onClick={() => onUpdate({ ...item, quantity: item.quantity - 1 })}>-</button>
+                <button className="btn-delete" onClick={() => onDelete(item.id)}>Delete</button>
+              </div>
             </td>
           </tr>
         ))}

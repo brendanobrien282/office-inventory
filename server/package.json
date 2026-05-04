@@ -1,6 +1,7 @@
 {
   "name": "inventory-server",
   "version": "1.0.0",
+  "description": "Express API for office inventory",
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
